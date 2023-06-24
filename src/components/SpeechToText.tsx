@@ -9,10 +9,11 @@ import SpeakingAnimation from "./SpeakingAnimation";
 const SpeechToText = () => {
   const { listening, segment, attachMicrophone, start, stop } =
     useSpeechContext();
-  const [data, setData] = useState("");
-  const [showSpeaking, setShowSpeaking] = useState(false);
-  const [showAnalyzing, setShowAnalyzing] = useState(false);
+  const [data, setData] = useState<string>("");
+  const [showSpeaking, setShowSpeaking] = useState<boolean>(false);
+  const [showAnalyzing, setShowAnalyzing] = useState<boolean>(false);
 
+  // On segment change (i.e. when user stops speaking) then start processing the text
   useEffect(() => {
     (async () => {
       if (segment && listening) {
@@ -30,6 +31,7 @@ const SpeechToText = () => {
     })();
   }, [segment]);
 
+  // Get Response from chat gpt and speak it
   const generateResponseAndSpeak = async (prompt: string) => {
     const response = await getResponse(prompt);
     const newData = prompt + response;
@@ -46,10 +48,9 @@ const SpeechToText = () => {
     setData(newData);
   };
 
-  const handleClick = async () => {
-    if (listening) {
-      await stop();
-    } else {
+  // Start listening
+  const handleStart = async () => {
+    if (!listening) {
       await attachMicrophone();
       await start();
     }
@@ -66,7 +67,7 @@ const SpeechToText = () => {
           <SpeakingAnimation />
         ) : (
           <button
-            onClick={handleClick}
+            onClick={handleStart}
             className="rounded-full w-20 h-20 bg-blue-500 text-white text-xl"
           >
             Start
