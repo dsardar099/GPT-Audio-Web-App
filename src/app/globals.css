@@ -2,7 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+@keyframes sound-waves {
+  0% {
+    transform: scaleY(1);
+  }
+  25% {
+    transform: scaleY(0.4);
+  }
+  40% {
+    transform: scaleY(0.6);
+  }
+  50% {
+    transform: scaleY(0.8);
+  }
+  60% {
+    transform: scaleY(1);
+  }
+  75% {
+    transform: scaleY(0.6);
+  }
+  80% {
+    transform: scaleY(0.4);
+  }
+  90% {
+    transform: scaleY(0.8);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+.animate-sound-waves {
+  animation-name: sound-waves;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes analyzing {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-analyzing{
+  animation-name: analyzing;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes speaking {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-speaking{
+  animation-name: speaking;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +99,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
